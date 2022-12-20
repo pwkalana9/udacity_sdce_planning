@@ -12,9 +12,9 @@ Following are few of the screenshots while the planner in action within the Carl
 ![shot 1](resources/1.png)
 ## After passing the blue car on the right, taking the centre lane
 ![shot 2](resources/2.png)
-# Avoiding the blue car parked on the left kerb by taking a rightward path
+## Avoiding the blue car parked on the left kerb by taking a rightward path
 ![shot 3](resources/3.png)
-# Following the centre path while avoiding the car parked on the left side of the road
+## Following the centre path while avoiding the car parked on the left side of the road
 ![shot 4](resources/4.png)
-# Move straight in the centre path when no obstacles seen ahead
+## Move straight in the centre path when no obstacles seen ahead
 ![shot 5](resources/5.png)
