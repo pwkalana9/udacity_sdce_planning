@@ -77,6 +77,11 @@ double BehaviorPlannerFSM::get_look_ahead_distance(const State& ego_state) {
   // TODO-Lookahead: One way to find a reasonable lookahead distance is to find
   // the distance you will need to come to a stop while traveling at speed V and
   // using a comfortable deceleration.
+
+  // distance = V^2 / 2*a 
+
+
+
   auto look_ahead_distance = (velocity_mag * velocity_mag)/ (2 * accel_mag);
 
   // LOG(INFO) << "Calculated look_ahead_distance: " << look_ahead_distance;
@@ -139,6 +144,7 @@ State BehaviorPlannerFSM::state_transition(const State& ego_state, State goal,
       // use cosine and sine to get x and y
       //
       auto ang = goal.rotation.yaw + M_PI;
+     // project the XY locations with known displacement and angle
       goal.location.x += _stop_line_buffer * std::cos(ang);  
       goal.location.y += _stop_line_buffer * std::sin(ang);  
 
@@ -155,6 +161,8 @@ State BehaviorPlannerFSM::state_transition(const State& ego_state, State goal,
       // that we know we are in nominal state and we can continue freely?
       // Remember that the speed is a vector
       // HINT: _speed_limit * std::sin/cos (goal.rotation.yaw);
+
+      // project XY velocities with known speed and yaw angle
       goal.velocity.x = _speed_limit * std::cos(goal.rotation.yaw);  
       goal.velocity.y = _speed_limit * std::sin(goal.rotation.yaw); 
       goal.velocity.z = 0;
@@ -165,6 +173,7 @@ State BehaviorPlannerFSM::state_transition(const State& ego_state, State goal,
     // maintain the same goal when in DECEL_TO_STOP state: Make sure the
     // new goal is the same as the previous goal (_goal). That way we
     // keep/maintain the goal at the stop line.
+    // set the goal
     goal = _goal; 
 
     // It turns out that when we teleport, the car is always at speed

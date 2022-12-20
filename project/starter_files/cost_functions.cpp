@@ -53,6 +53,7 @@ double collision_circles_cost_spiral(const std::vector<PathPoint>& spiral,
       // Circle placement: Where should the circles be at? The code below
       // is NOT complete. HINT: use CIRCLE_OFFSETS[c], sine and cosine to
       // calculate x and y: cur_y + CIRCLE_OFFSETS[c] * std::sin/cos(cur_yaw)
+      // project cercle centre with known offset and yaw angle
       auto circle_center_x = cur_x + CIRCLE_OFFSETS[c] * std::cos(cur_yaw);  
       auto circle_center_y = cur_y + CIRCLE_OFFSETS[c] * std::sin(cur_yaw);  
 
@@ -70,6 +71,7 @@ double collision_circles_cost_spiral(const std::vector<PathPoint>& spiral,
           // Distance from circles to obstacles/actor: How do you calculate
           // the distance between the center of each circle and the
           // obstacle/actor
+          // distance = square root (X^2 + Y^2)
           double dist = std::sqrt(std::pow((circle_center_x - actor_center_x),2) 
           + std::pow((circle_center_y - actor_center_y), 2));  
 
